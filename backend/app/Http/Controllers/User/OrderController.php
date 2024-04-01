@@ -51,7 +51,8 @@ class OrderController extends Controller
         $order->promocode = $request->has('promocode') ? $request->promocode : 'nothing';
         $UserOrdered = $order->save();
         if ($adminOrders && $UserOrdered) {
-            $order->order_details = json_decode($order->order_details);
+            $adminOrder->order_details = json_decode($adminOrder->order_details);
+            $order=$adminOrder;
             $pdf = Pdf::loadView('admin.order', compact('order'));
             return $pdf->download('order.pdf');
         } else {

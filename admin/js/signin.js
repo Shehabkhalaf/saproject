@@ -24,7 +24,7 @@ buttonSubmit.addEventListener('click', function (event) {
                     localStorage.setItem("token",data.data.token);
                     localStorage.setItem("log", JSON.stringify(true));
                     localStorage.setItem("role", data.data.role);
-                    localStorage.setItem("userData",JSON.stringify(data.data));
+                    localStorage.setItem("adminData",JSON.stringify(data.data));
                     if(data.data.role=="owner"){
                         window.location.href = 'dashboard.html'
                     }else{
@@ -41,4 +41,4 @@ buttonSubmit.addEventListener('click', function (event) {
 });
 
 
-new WOW().init();
+// new WOW().init();

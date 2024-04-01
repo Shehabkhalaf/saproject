@@ -133,7 +133,28 @@ fetch(GET_DATA_CATEGORY).then(
 
 
 
-// Send DATA
+// // Send DATA
+// document.getElementById('submit').addEventListener('submit', function (e) {
+//     e.preventDefault(); // Prevent the default form submission
+
+//     const formData = new FormData();
+//     formData.append('title', productName.value);
+//     formData.append('description', description.value);
+//     formData.append('discount', JSON.stringify(listDiscount));
+//     formData.append('price', JSON.stringify(listPrice));
+//     formData.append('size', JSON.stringify(listSize));
+//     formData.append('stock', stock.value);
+//     formData.append('color', JSON.stringify(listColor));
+//     formData.append('category_id', categoryValue);
+//     formData.append('images', JSON.stringify(listImages));
+//     formData.append('token', token);
+
+//     const xhr = new XMLHttpRequest();
+//     xhr.open('POST', ADD_PRODUCT, true);
+//     xhr.send(formData);
+// });
+// Assuming productName, description, stock, categoryValue, token, listDiscount, listPrice, listSize, listColor, and listImages are defined elsewhere in your code.
+
 document.getElementById('submit').addEventListener('submit', function (e) {
     e.preventDefault(); // Prevent the default form submission
 
@@ -148,11 +169,21 @@ document.getElementById('submit').addEventListener('submit', function (e) {
     formData.append('category_id', categoryValue);
     formData.append('images', JSON.stringify(listImages));
     formData.append('token', token);
-
     const xhr = new XMLHttpRequest();
     xhr.open('POST', ADD_PRODUCT, true);
+    xhr.onload = function () {
+        if (xhr.status === 201) {
+            // Alert success message
+            alert('Product added successfully!');
+            window.location.href = 'addProducts.html'
+        } else {
+            // Handle other status codes if needed
+            alert('Failed to add product. Please try again.');
+        }
+    };
     xhr.send(formData);
 });
+
 
 
 

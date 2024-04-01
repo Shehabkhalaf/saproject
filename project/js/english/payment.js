@@ -190,7 +190,7 @@ function SendProduct(listItems) {
 
   const orderData = {
     order_details: JSON.stringify(ordersDetails),
-    total_price: totalPrice,
+    total_price: totalPrice > 1000 ? totalPrice - 5 : totalPrice,
     paid_method: 'cash',
     products: products,
     ...userData,
@@ -247,6 +247,9 @@ async function sendOrder(orderData) {
         window.location = 'products.html';
     })
     .catch((error) => {
+      listItems = [];
+      localStorage.setItem('products', JSON.stringify(listItems));
+      localStorage.removeItem('userDataOrder');
       window.location = 'products.html';
     });
 } catch (error) {

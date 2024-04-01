@@ -1,7 +1,7 @@
 //API
 const UPDATE_DATA = 'http://127.0.0.1:8000/api/admin/update_data';
 // Get Data From Localstorage
-let dataUser = JSON.parse(localStorage.getItem("userData"));
+let dataUser = JSON.parse(localStorage.getItem("adminData"));
 // Get Elements
 function adminData(){
     document.getElementById("username").value = dataUser.name;
@@ -25,7 +25,7 @@ submit.addEventListener('submit', function (e) {
             if (xhr.status === 201) {
                     swal("Your data has been updated", "", "success");
                     dataUser.name = username.value;
-                    localStorage.setItem("userData", JSON.stringify(dataUser));
+                    localStorage.setItem("adminData", JSON.stringify(dataUser));
                     password.value = ''
                     adminData();
             } else {
